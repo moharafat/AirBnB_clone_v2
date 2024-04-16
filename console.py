@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
+                    if pline[0] is '{' and pline[-1] is '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -118,40 +118,29 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-
-        argument_long = args.split()
-        #extracting the classname + removing it from argument_long
-        klass_name = argument_long.pop(0)
-        if klass_name not in HBNBCommand.classes:
+        div_pars = args.split()
+        cls_nam = div_pars[0]
+        if (cls_nam not in HBNBCommand.classes):
             print("** class doesn't exist **")
             return
-        params = {}
-        for arg in argument_long:
-            parameter = arg.split('=')
-            if len(parameter) == 2:
-                key = parameter[0]
-                value = parameter[1]
-                if value.startswith('"') and value.endswith('"'):
-                    value.replace('_', ' ')
-                    value.replace('\\"', '"')
-                    value = value[1:-1]
-                elif '.' in value:
-                    try:
-                        value = float(value)
-                    except ValueError:
-                        continue
+        remaining_args = {}
+        for par in div_pars[1:]:
+            try:
+                par_k, par_v = par.split('=')
+                par_v = par_v.replace('\\"', '"').replace('_', ' ')
+                if par_v.startswith('"') and par_v.endswith('"'):
+                    par_v = par_v[1:-1]
+                elif '.' in par_v:
+                    par_v = float(par_v)
                 else:
-                    try:
-                        value = int(value)
-                    except ValueError:
-                        continue
-                params[key] = value
-
-        new_instance = HBNBCommand.classes[klass_name](**params)
-        print(new_instance)
+                    par_v = int(par_v)
+                remaining_args[par_k] = par_v
+            except ValueError:
+                pass
+        nw_inst = HBNBCommand.classes[cls_nam](**remaining_args)
+        storage.new(nw_inst)
         storage.save()
-        print(new_instance.id)
-        storage.save()
+        print(nw_inst.id)
 
     def help_create(self):
         """ Help information for the create method """
@@ -214,7 +203,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del (storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -346,6 +335,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
