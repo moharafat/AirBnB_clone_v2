@@ -64,4 +64,4 @@ class FileStorage:
 
         which_obj = obj.to_dict()['__class__'] + '.' + obj.id
         if which_obj in self.__objects.keys():
-            del self.objects[which_obj]
+            del self.__objects[which_obj]
