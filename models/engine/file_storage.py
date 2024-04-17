@@ -14,6 +14,10 @@ class FileStorage:
             return self.__objects
         else:
             nameofclass = cls.__name__
+            print(nameofclass)
+            print(nameofclass)
+            print(nameofclass)
+            print("sssssssssssssssssssss")
             newdic = {}
             for onekey in self.__objects.keys():
                 if (onekey.split('.')[0] == nameofclass):
