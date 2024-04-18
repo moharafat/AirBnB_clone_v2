@@ -6,7 +6,7 @@ from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
 
-class Place(BaseModel, base):
+class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = 'users'
     if how_to_store == 'db':
