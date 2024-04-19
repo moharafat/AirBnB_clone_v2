@@ -11,9 +11,13 @@ class City(BaseModel, Base):
     creates a new model city
     """
     __tablename__ = 'cities'
-    name = Column(String(128), nullable=False)
-    state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
-    places = relationship(
+    if how_to_store == 'db':
+        name = Column(String(128), nullable=False)
+        state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
+        places = relationship(
                 'Place',
                 backref='cities',
                 cascade='all, delete, delete-orphan')
+    else:
+        name = ''
+        state_id = ''
