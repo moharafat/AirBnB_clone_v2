@@ -9,7 +9,7 @@ def Hello_HBNB():
     """
     returns Hello HBNB
     """
-    
+
     return 'Hello HBNB!'
 
 
