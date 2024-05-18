@@ -25,7 +25,7 @@ def HBNB():
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def C_text():
+def C_DESC(TEXT):
     """
     c +Replace underscores with spaces
     """
