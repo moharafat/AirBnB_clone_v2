@@ -44,11 +44,11 @@ def des(text):
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def number(text):
+def number(n):
     """
     Returns ther number
     """
-    return "{} is a number".format(text)
+    return "{} is a number".format(n)
 
 
 if __name__ == "__main__":
