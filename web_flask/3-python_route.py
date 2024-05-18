@@ -33,11 +33,11 @@ def C_DESC(text):
     return "C {}".format(text)
 
 
-@app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
+@app.route('/python/', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def des(text):
+def des(text='is cool'):
     """
-    python
+    Displays 'Python' followed by the text
     """
     text = text.replace('_', ' ')
     return "Python  {}".format(text)
