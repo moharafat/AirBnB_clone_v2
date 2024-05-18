@@ -7,6 +7,3 @@ def Hello_HBNB():
 
 if __name__ == "_main_":
     app.run(host="0.0.0.0", port=5000)
-
-git config --global user.name "Mohamed Arafat"
-git config --global user.email "mohamedamr0001@gmail.com"
