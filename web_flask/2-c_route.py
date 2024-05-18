@@ -6,6 +6,8 @@ from flask import Flask
 app = Flask(__name__)
 
 
+app.url_map.strict_slashes = False
+
 @app.route('/', strict_slashes=False)
 def Hello_HBNB():
     """
@@ -24,12 +26,13 @@ def HBNB():
     return 'HBNB'
 
 
-@app.route('/c/<text>', strict_slashes=False)
+@app.route('/c/<text>')
 def text():
     """
     c +Replace underscores with spaces
     """
-    return 'C ' + text.replace('_', ' ')
+    text = text.replace('_', ' ')
+    return "C {}".format(text)
 
 
 if __name__ == "__main__":
