@@ -44,11 +44,11 @@ def des(text):
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def html(n):
+def number(n):
     """
-    display a HTML page
+    Returns ther number
     """
-    return n
+    return "{} is a number".format(n)
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
